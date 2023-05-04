@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import { media } from '../GlobalStyle'
 import Search from '../Search'
 import { Icon } from '../IconInput'
@@ -30,7 +29,7 @@ const Wrapper = styled.div`
   display: none;
 
   ${media.laptop` 
-    background: ${COLORS.gray[900]};
+    background: var(--color-gray-900);
     height: 40px;
     display: flex;
     align-items: center;
@@ -40,14 +39,14 @@ const Wrapper = styled.div`
 
 const MarketingPoster = styled.span`
   font-size: 1.4rem;
-  font-weight: ${WEIGHTS.normal};
-  color: ${COLORS.white};
+  font-weight: var(--font-weight-normal);
+  color: var(--color-white);
   margin-right: auto;
 `
 const RightNav = styled.div`
   display: flex;
   align-items: stretch;
   gap: 24px;
-  color: ${COLORS.gray[300]};
+  color: var(--color-gray-300);
   font-size: 1.4rem;
 `

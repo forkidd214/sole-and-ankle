@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import { CATEGORIES, SORTS } from '../../data'
 import { findCategory } from '../../utils'
 
@@ -98,6 +97,6 @@ const ContentHeader = styled.div`
 
 const MainTitle = styled.h2`
   font-size: 2.4rem;
-  font-weight: ${WEIGHTS.bold};
-  color: ${COLORS.gray[900]};
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
 `

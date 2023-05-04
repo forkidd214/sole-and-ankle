@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import { media } from '../GlobalStyle'
 import { CATEGORIES } from '../../data'
 import HoverButton from '../HoverButton'
@@ -13,7 +12,7 @@ export default function CategoryList({ category, onChange }) {
           <HoverButton key={slug} hoverColor={checked ? 'primary' : 'light'}>
             <Category
               style={{
-                '--color': checked ? COLORS.primary : 'initial',
+                '--color': checked ? 'var(--color-primary)' : 'initial',
               }}
             >
               <input
@@ -45,7 +44,7 @@ const Wrapper = styled.div`
 const Category = styled.label`
   text-transform: capitalize;
   color: var(--color);
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-weight-medium);
   font-size: 1.6rem;
   width: 100%;
   text-align: left;

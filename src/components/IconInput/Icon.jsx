@@ -5,7 +5,14 @@
  * API / which props it takes.
  */
 import styled from 'styled-components'
-import { Search, Menu, AtSign, ChevronDown, ShoppingBag } from 'react-feather'
+import {
+  Search,
+  Menu,
+  AtSign,
+  ChevronDown,
+  ShoppingBag,
+  X,
+} from 'react-feather'
 
 const icons = {
   search: Search,
@@ -13,6 +20,7 @@ const icons = {
   'at-sign': AtSign,
   'chevron-down': ChevronDown,
   'shopping-bag': ShoppingBag,
+  x: X,
 }
 
 const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {

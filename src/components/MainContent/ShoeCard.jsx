@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import { formatPrice, pluralize, isNewShoe } from '../../utils'
 import styled from 'styled-components'
 
@@ -33,7 +32,9 @@ export default function ShoeCard({
           <Price
             style={{
               '--color':
-                variant === 'on-sale' ? COLORS.gray[700] : COLORS.gray[900],
+                variant === 'on-sale'
+                  ? 'var(--color-gray-700)'
+                  : 'var(--color-gray-900)',
               '--text-decoration':
                 variant === 'on-sale' ? 'line-through' : 'undifined',
             }}
@@ -86,21 +87,21 @@ const Span = styled.span`
 `
 
 const Name = styled(Span)`
-  color: ${COLORS.gray[900]};
-  font-weight: ${WEIGHTS.medium};
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-medium);
 `
 const NumOfColors = styled(Span)`
-  color: ${COLORS.gray[700]};
-  font-weight: ${WEIGHTS.normal};
+  color: var(--color-gray-700);
+  font-weight: var(--font-weight-normal);
 `
 const Price = styled(Span)`
   color: var(--color);
-  font-weight: ${WEIGHTS.normal};
+  font-weight: var(--font-weight-normal);
   text-decoration: var(--text-decoration);
 `
 const SalePrice = styled(Span)`
-  color: ${COLORS.primary};
-  font-weight: ${WEIGHTS.medium};
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
 `
 const Flag = styled.span`
   display: block;
@@ -112,12 +113,12 @@ const Flag = styled.span`
   padding: 0 10px;
   border-radius: 2px;
   font-size: 1.4rem;
-  font-weight: ${WEIGHTS.bold};
-  color: ${COLORS.white};
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
 `
 const SaleFlag = styled(Flag)`
-  background: ${COLORS.primary};
+  background: var(--color-primary);
 `
 const NewFlag = styled(Flag)`
-  background: ${COLORS.secondary};
+  background: var(--color-secondary);
 `

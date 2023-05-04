@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import { Icon } from '../IconInput'
 
 import styled from 'styled-components'
@@ -17,22 +16,22 @@ export default function Select({ label, value, onChange, children }) {
 const Wrapper = styled.div`
   width: max-content;
   position: relative;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
 
   &:hover {
-    color: ${COLORS.black};
+    color: var(--color-black);
   }
 `
 
 const SelectBar = styled.select`
   /* typography */
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-weight-medium);
   font-size: inherit;
   color: inherit;
   /* line-height: 19px; */
 
   /* layout */
-  background: ${COLORS.gray[100]};
+  background: var(--color-gray-100);
   border: none;
   border-radius: 8px;
   padding: 10px 44px 9px 16px;

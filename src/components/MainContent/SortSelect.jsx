@@ -1,4 +1,3 @@
-import { COLORS } from '../../constants'
 import { SORTS } from '../../data'
 
 import { media } from '../GlobalStyle'
@@ -38,6 +37,6 @@ const Lable = styled.label`
     height: 42px;
     align-items: baseline;
     gap: 16px;
-    color: ${COLORS.gray[700]};
+    color: var(--color-gray-700);
   `}
 `

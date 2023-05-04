@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import styled from 'styled-components'
 
 export default function Breadcrumbs({ data, children, ...props }) {
@@ -30,14 +29,14 @@ const BreadcrumbsList = styled.ol`
   list-style: none;
   margin: 0;
   padding: 0;
-  font-weight: ${WEIGHTS.normal};
+  font-weight: var(--font-weight-normal);
   font-size: 1.4rem;
   height: 16px;
 `
 
 const CrumbWrapper = styled.li`
   display: inline;
-  color: ${COLORS.gray[700]};
+  color: var(--color-gray-700);
 
   &:not(:last-child) {
     --spacing: 8px;
@@ -50,7 +49,7 @@ const CrumbWrapper = styled.li`
       border-right: 1px solid currentColor;
       margin-left: var(--spacing);
       transform: rotate(15deg);
-      color: ${COLORS.gray[300]};
+      color: var(--color-gray-300);
     }
   }
 `

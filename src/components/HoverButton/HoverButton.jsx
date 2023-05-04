@@ -1,14 +1,15 @@
-import { COLORS } from '../../constants'
+import * as React from 'react'
+
 import styled from 'styled-components'
 
 const HOVER_COLORS = {
   dark: {
-    '--hover-color': COLORS.gray[100],
-    '--hover-background': COLORS.gray[700],
+    '--hover-color': 'var(--color-gray-100)',
+    '--hover-background': 'var(--color-gray-700)',
   },
   light: {
-    '--hover-color': COLORS.gray[900],
-    '--hover-background': COLORS.gray[300],
+    '--hover-color': 'var(--color-gray-900)',
+    '--hover-background': 'var(--color-gray-300)',
   },
   primary: {
     '--hover-color': 'hsl(340deg, 65%, 30%)',
@@ -20,32 +21,29 @@ const HOVER_COLORS = {
   },
 }
 
-export default function HoverButton({
-  hoverColor = 'dark',
-  px = 4,
-  py = 4,
-  style,
-  ...props
-}) {
-  const colorStyles = HOVER_COLORS[hoverColor]
-  if (!colorStyles) {
-    throw new Error(`Unknown hoverColor of ${hoverColor}`)
-  }
+const HoverButton = React.forwardRef(
+  ({ hoverColor = 'dark', px = 4, py = 4, style, ...props }, forwardedRef) => {
+    const colorStyles = HOVER_COLORS[hoverColor]
+    if (!colorStyles) {
+      throw new Error(`Unknown hoverColor of ${hoverColor}`)
+    }
 
-  const paddingStyles = {
-    '--padding-y': py + 'px',
-    '--padding-x': px + 'px',
-    '--padding-y-negative': -py + 'px',
-    '--padding-x-negative': -px + 'px',
-  }
+    const paddingStyles = {
+      '--padding-y': py + 'px',
+      '--padding-x': px + 'px',
+      '--padding-y-negative': -py + 'px',
+      '--padding-x-negative': -px + 'px',
+    }
 
-  return (
-    <Wrapper
-      style={{ ...colorStyles, ...paddingStyles, ...style }}
-      {...props}
-    />
-  )
-}
+    return (
+      <Wrapper
+        style={{ ...colorStyles, ...paddingStyles, ...style }}
+        {...props}
+        ref={forwardedRef}
+      />
+    )
+  }
+)
 
 const Wrapper = styled.button`
   /* Layout */
@@ -73,3 +71,5 @@ const Wrapper = styled.button`
     background: var(--hover-background);
   }
 `
+
+export default HoverButton

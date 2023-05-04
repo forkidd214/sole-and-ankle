@@ -1,4 +1,3 @@
-import { COLORS, WEIGHTS } from '../../constants'
 import { media } from '../GlobalStyle'
 import HoverButton from '../HoverButton'
 import { Icon } from '../IconInput'
@@ -35,11 +34,12 @@ const MainHeader = styled.div`
   /* Layout */
   height: 72px;
   padding: 0 16px;
-  border-top: 4px solid ${COLORS.gray[900]};
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-top: 4px solid var(--color-gray-900);
+  border-bottom: 1px solid var(--color-gray-300);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: auto;
 
   /* Text */
 
@@ -61,10 +61,11 @@ const MainHeader = styled.div`
 
 const Logo = styled.a`
   font-size: 2.4rem;
-  font-weight: ${WEIGHTS.bold};
+  font-weight: var(--font-weight-bold);
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   outline-offset: 4px;
+  white-space: nowrap;
 
   ${media.laptop`
     margin-right: 48px;

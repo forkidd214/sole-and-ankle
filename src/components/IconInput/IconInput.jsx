@@ -1,5 +1,4 @@
 import Icon from './Icon'
-import { COLORS, WEIGHTS } from '../../constants'
 import { themeToCSSVariables } from '../../utils'
 
 import styled from 'styled-components'
@@ -44,7 +43,7 @@ const Wrapper = styled.label`
   color: inherit;
 
   &:hover {
-    color: ${COLORS.white};
+    color: var(--color-white);
   }
 `
 
@@ -54,7 +53,7 @@ const Input = styled.input`
   font-style: normal;
   font-size: var(--font-size);
   height: var(--height);
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-weight-medium);
   color: inherit;
   background: inherit;
 
@@ -65,8 +64,8 @@ const Input = styled.input`
   border-bottom: var(--border-width) solid currentcolor;
 
   &::placeholder {
-    font-weight: ${WEIGHTS.normal};
-    color: ${COLORS.gray[500]};
+    font-weight: var(--font-weight-normal);
+    color: var(--color-gray-500);
   }
 
   /* interactive */
