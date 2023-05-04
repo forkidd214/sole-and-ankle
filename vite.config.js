@@ -13,7 +13,7 @@ export default defineConfig({
               ssr: false,
               pure: true,
               displayName: true,
-              fileName: false,
+              fileName: true,
             },
           ],
         ],

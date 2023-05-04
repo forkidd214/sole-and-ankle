@@ -21,13 +21,9 @@ export default function ShoreGrid({ category, sort }) {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   gap: 32px;
 `
 
-const ShoeWrapper = styled.div`
-  min-width: 275px;
-  max-width: 600px;
-  flex: 1;
-`
+const ShoeWrapper = styled.div``
