@@ -1,5 +1,5 @@
 import { formatPrice, pluralize, isNewShoe } from '../../utils'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export default function ShoeCard({
   name,
@@ -18,11 +18,13 @@ export default function ShoeCard({
 
   return (
     <Figure>
-      <ImageWrapper>
-        <Img src={imageSrc} alt={name} />
+      <FigureHero>
+        <ImageWrapper>
+          <Img src={imageSrc} alt={name} />
+        </ImageWrapper>
         {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
         {variant === 'new-release' && <NewFlag>Just Released!</NewFlag>}
-      </ImageWrapper>
+      </FigureHero>
       <FigureCaption>
         <VStack>
           <Name>{name}</Name>
@@ -56,8 +58,17 @@ const Figure = styled.figure`
   cursor: pointer;
 `
 
-const ImageWrapper = styled.div`
+const FigureHero = styled.div`
   position: relative;
+  transition: filter 800ms;
+
+  &:hover {
+    filter: drop-shadow(0 0 2rem var(--color-gray-500));
+    transition: filter 200ms;
+  }
+`
+
+const ImageWrapper = styled.div`
   border-radius: 16px 16px 4px 4px;
   overflow: hidden;
 `
@@ -67,6 +78,18 @@ const Img = styled.img`
   width: 100%;
   display: block;
   line-height: 0;
+  object-fit: cover;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform-origin: 50% 80%;
+    transform: scale(1);
+    transition: transform 600ms;
+
+    ${FigureHero}:hover & {
+      transform: scale(1.1);
+      transition: transform 200ms;
+    }
+  }
 `
 
 const FigureCaption = styled.figcaption`
@@ -103,6 +126,16 @@ const SalePrice = styled(Span)`
   color: var(--color-primary);
   font-weight: var(--font-weight-medium);
 `
+
+const shiver = keyframes`
+  from {
+    transform: rotate(2deg);
+  }
+  to {
+    transform: rotate(-2deg);
+  }
+`
+
 const Flag = styled.span`
   display: block;
   position: absolute;
@@ -115,10 +148,18 @@ const Flag = styled.span`
   font-size: 1.4rem;
   font-weight: var(--font-weight-bold);
   color: var(--color-white);
+
+  @media (prefers-reduced-motion: no-preference) {
+    ${FigureHero}:hover & {
+      animation: ${shiver} 50ms 6 alternate ease-in-out;
+    }
+  }
 `
+
 const SaleFlag = styled(Flag)`
   background: var(--color-primary);
 `
+
 const NewFlag = styled(Flag)`
   background: var(--color-secondary);
 `
