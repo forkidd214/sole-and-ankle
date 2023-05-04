@@ -4,7 +4,7 @@ import { Icon } from '../IconInput'
 import { media } from '../GlobalStyle'
 import HoverButton from '../HoverButton'
 
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export default function Navigation({ isDesktop = false }) {
   return isDesktop ? <DesktopNavigation /> : <MobileNavigation />
@@ -71,11 +71,75 @@ const MobileNavigation = () => {
   )
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+`
+
+const easeOutBounce = keyframes`
+	0% {
+		transform: translateX(calc(100% + 0%));
+	}
+  
+	12% {
+		transform: translateX(calc(100% - 10.89%));
+	}
+
+	24% {
+		transform: translateX(calc(100% - 43.56%));
+	}
+
+	36% {
+		transform: translateX(calc(100% - 98.01%));
+	}
+
+	54% {
+		transform: translateX(calc(100% - 75.02%));
+	}
+
+	74% {
+		transform: translateX(calc(100% - 98.37%));
+	}
+
+	82% {
+		transform: translateX(calc(100% - 93.75%));
+	}
+
+	92% {
+		transform: translateX(calc(100% - 99.34%));
+	}
+
+	96% {
+		transform: translateX(calc(100% - 98.46%));
+	}
+
+	100% {
+    transform: translateX(calc(100% - 100%));
+	}
+`
+
 const DialogOverlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
   background: var(--color-gray-700);
   opacity: 0.8;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${fadeIn} 200ms both;
+  }
 `
 
 const DialogContent = styled(Dialog.Content)`
@@ -90,6 +154,11 @@ const DialogContent = styled(Dialog.Content)`
   flex-direction: column;
   justify-content: space-between;
   padding: 32px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${easeOutBounce} 500ms both;
+    animation-delay: 100ms;
+  }
 `
 
 const Space = styled.div`
@@ -114,6 +183,11 @@ const Footer = styled.ul`
   & > li {
     height: 16px;
     line-height: 16px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${fadeIn} 500ms both;
+    animation-delay: 400ms;
   }
 `
 
@@ -164,6 +238,11 @@ const MobileNavList = styled(Navlist)`
   flex-direction: column;
   align-items: flex-start;
   gap: 22px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${fadeIn} 500ms both;
+    animation-delay: 400ms;
+  }
 `
 
 const NavItem = styled.li`
@@ -176,6 +255,30 @@ const NavItem = styled.li`
   display: flex;
   align-items: center;
   white-space: nowrap;
+
+  @media (prefers-reduced-motion: no-preference) {
+    ${MobileNavList} > & {
+      animation: ${fadeIn} 500ms both;
+    }
+    ${MobileNavList} > &:nth-of-type(1) {
+      animation-delay: 400ms;
+    }
+    ${MobileNavList} > &:nth-of-type(2) {
+      animation-delay: 600ms;
+    }
+    ${MobileNavList} > &:nth-of-type(3) {
+      animation-delay: 800ms;
+    }
+    ${MobileNavList} > &:nth-of-type(4) {
+      animation-delay: 1000ms;
+    }
+    ${MobileNavList} > &:nth-of-type(5) {
+      animation-delay: 1200ms;
+    }
+    ${MobileNavList} > &:nth-of-type(6) {
+      animation-delay: 1400ms;
+    }
+  }
 `
 
 const NavLink = ({ children, href }) => {
