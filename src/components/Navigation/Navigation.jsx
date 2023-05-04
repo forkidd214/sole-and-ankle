@@ -134,15 +134,11 @@ const DesktopNavigation = () => (
             key={slug}
             style={{ '--color': isSale ? 'var(--color-secondary)' : 'unset' }}
           >
-            <HoverButton
-              as="a"
-              href={url}
-              hoverColor={isSale ? 'secondary' : 'light'}
-              py={16}
-              px={8}
-            >
-              {label}
-            </HoverButton>
+            {isSale ? (
+              <SaleLink href={url}>{label}</SaleLink>
+            ) : (
+              <NavLink href={url}>{label}</NavLink>
+            )}
           </NavItem>
         )
       })}
@@ -180,6 +176,100 @@ const NavItem = styled.li`
   display: flex;
   align-items: center;
   white-space: nowrap;
+`
+
+const NavLink = ({ children, href }) => {
+  return (
+    <NavLinkWrapper>
+      <Frontface>
+        <Link href={href}>{children}</Link>
+      </Frontface>
+      <Underhood>
+        <Link href={href}>{children}</Link>
+      </Underhood>
+    </NavLinkWrapper>
+  )
+}
+
+const NavLinkWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+`
+
+const Frontface = styled.div`
+  @media (prefers-reduced-motion: reduce) {
+    ${NavLinkWrapper}:hover & {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 200ms;
+    ${NavLinkWrapper}:hover & {
+      transform: translateY(-100%);
+    }
+  }
+`
+
+const Underhood = styled.div`
+  position: absolute;
+  font-weight: var(--font-weight-bold);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 200ms;
+    ${NavLinkWrapper}:hover & {
+      transform: translateY(-100%);
+    }
+  }
+`
+
+const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+`
+
+const SaleLink = styled(Link)`
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: -10%;
+    height: 0;
+    width: 120%;
+    border: 1px solid var(--color-primary);
+    opacity: 0;
+    transition: all 500ms;
+  }
+
+  &::before {
+    top: 0;
+    transform: translateY(-16px);
+  }
+  &::after {
+    bottom: 0;
+    transform: translateY(16px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ${NavItem}:hover & {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    ${NavItem}:hover & {
+      color: var(--color-primary);
+    }
+
+    ${NavItem}:hover &:before,
+    ${NavItem}:hover &:after {
+      transform: translateY(0px);
+      opacity: 1;
+      transition: all 200ms;
+    }
+  }
 `
 
 const links = [
