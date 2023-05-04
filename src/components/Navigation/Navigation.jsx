@@ -138,6 +138,7 @@ const DialogOverlay = styled(Dialog.Overlay)`
   opacity: 0.8;
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     animation: ${fadeIn} 200ms both;
   }
 `
@@ -156,6 +157,7 @@ const DialogContent = styled(Dialog.Content)`
   padding: 32px;
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     animation: ${easeOutBounce} 500ms both;
     animation-delay: 100ms;
   }
@@ -186,6 +188,7 @@ const Footer = styled.ul`
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     animation: ${fadeIn} 500ms both;
     animation-delay: 400ms;
   }
@@ -240,6 +243,7 @@ const MobileNavList = styled(Navlist)`
   gap: 22px;
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     animation: ${fadeIn} 500ms both;
     animation-delay: 400ms;
   }
@@ -257,6 +261,7 @@ const NavItem = styled.li`
   white-space: nowrap;
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     ${MobileNavList} > & {
       animation: ${fadeIn} 500ms both;
     }
@@ -283,23 +288,22 @@ const NavItem = styled.li`
 
 const NavLink = ({ children, href }) => {
   return (
-    <NavLinkWrapper>
-      <Frontface>
-        <Link href={href}>{children}</Link>
-      </Frontface>
-      <Underhood>
-        <Link href={href}>{children}</Link>
-      </Underhood>
+    <NavLinkWrapper href={href}>
+      <MainText>{children}</MainText>
+      <HoverText>{children}</HoverText>
     </NavLinkWrapper>
   )
 }
 
-const NavLinkWrapper = styled.div`
+const NavLinkWrapper = styled.a`
+  text-decoration: none;
+  color: inherit;
   position: relative;
   overflow: hidden;
 `
 
-const Frontface = styled.div`
+const MainText = styled.span`
+  display: block;
   @media (prefers-reduced-motion: reduce) {
     ${NavLinkWrapper}:hover & {
       font-weight: var(--font-weight-bold);
@@ -307,6 +311,7 @@ const Frontface = styled.div`
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     transition: transform 200ms;
     ${NavLinkWrapper}:hover & {
       transform: translateY(-100%);
@@ -314,11 +319,13 @@ const Frontface = styled.div`
   }
 `
 
-const Underhood = styled.div`
+const HoverText = styled.span`
+  display: block;
   position: absolute;
   font-weight: var(--font-weight-bold);
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     transition: transform 200ms;
     ${NavLinkWrapper}:hover & {
       transform: translateY(-100%);
@@ -333,6 +340,12 @@ const Link = styled.a`
 
 const SaleLink = styled(Link)`
   position: relative;
+  outline: none;
+
+  &:focus {
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px 2px black;
+  }
 
   &::before,
   &::after {
@@ -362,6 +375,7 @@ const SaleLink = styled(Link)`
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     ${NavItem}:hover & {
       color: var(--color-primary);
     }
@@ -370,7 +384,7 @@ const SaleLink = styled(Link)`
     ${NavItem}:hover &:after {
       transform: translateY(0px);
       opacity: 1;
-      transition: all 200ms;
+      transition: transform 200ms, opacity 200ms;
     }
   }
 `

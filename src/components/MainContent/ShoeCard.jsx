@@ -62,9 +62,11 @@ const FigureHero = styled.div`
   position: relative;
   transition: filter 800ms;
 
-  &:hover {
-    filter: drop-shadow(0 0 2rem var(--color-gray-500));
-    transition: filter 200ms;
+  @media (hover: hover) {
+    &:hover {
+      filter: drop-shadow(0 0 2rem var(--color-gray-500));
+      transition: filter 200ms;
+    }
   }
 `
 
@@ -80,14 +82,17 @@ const Img = styled.img`
   line-height: 0;
   object-fit: cover;
 
-  @media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    will-change: transform;
     transform-origin: 50% 80%;
     transform: scale(1);
-    transition: transform 600ms;
+    filter: brightness(95%);
+    transition: transform 600ms, filter 800ms;
 
     ${FigureHero}:hover & {
       transform: scale(1.1);
-      transition: transform 200ms;
+      filter: brightness(100%);
+      transition: transform 200ms, filter 200ms;
     }
   }
 `
@@ -149,9 +154,9 @@ const Flag = styled.span`
   font-weight: var(--font-weight-bold);
   color: var(--color-white);
 
-  @media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     ${FigureHero}:hover & {
-      animation: ${shiver} 50ms 6 alternate ease-in-out;
+      animation: ${shiver} 50ms 5 alternate ease-in-out;
     }
   }
 `
